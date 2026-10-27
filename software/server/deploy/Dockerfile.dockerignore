@@ -1,0 +1,10 @@
+# Dockerfile 专用 ignore 相对于 software/ 构建上下文生效。
+**/node_modules
+**/data
+**/*.local.json
+**/secrets
+**/.env
+**/test-results.tap
+**/tooling
+**/artifacts
+**/test

@@ -1,0 +1,32 @@
+menu "Active inspection (hardware unverified)"
+config AI_DEVICE_ID
+    string "Device ID"
+    default "inspection-01"
+config AI_WS_URL
+    string "Authenticated WSS URL (blank disables cloud)"
+    default ""
+config AI_DEVICE_TOKEN
+    string "Device token (private local sdkconfig only)"
+    default ""
+config AI_WHIP_URL
+    string "HTTPS WHIP URL (blank disables media publishing)"
+    default ""
+config AI_UART_TX
+    int "Reference STM32 UART TX GPIO (verify board first)"
+    default 20
+config AI_UART_RX
+    int "Reference STM32 UART RX GPIO (verify board first)"
+    default 21
+config AI_UART_ENABLE
+    bool "Enable STM32 UART after board verification"
+    default n
+config AI_MEDIA_ENABLE
+    bool "Enable OV5647 capture and WebRTC"
+    default y
+config AI_BLE_ENABLE
+    bool "Enable temporary BLE maintenance service"
+    default y
+config AI_PAIRING_BUTTON
+    int "BOOT button GPIO (active low; verify delivered board)"
+    default 35
+endmenu

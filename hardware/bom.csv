@@ -1,0 +1,15 @@
+item_id,model_or_purchase_spec,quantity,observed_currency,source_url,assembly_condition,notes,checked_on,procurement_status,user_solder_points_target
+B01,NUCLEO-F401RE / MB1136,1,CNY,https://cn.element14.com/stmicroelectronics/nucleo-f401re/nucleo-board-mcu/dp/2394223,官方排针成品;实际修订待收货核验,板载ST-LINK;不切板,2026-09-30,planned,0
+B02,Waveshare ESP32-P4-NANO-KIT-A / SKU29027 / C6+OV5647,1,,https://www.waveshare.com/product/arduino/boards-kits/esp32-p4/esp32-p4-nano.htm,必须P1/P2已焊;卖家/到货照片待确认,含相机15PIN FFC;不以18.99美元系列起价计KIT-A,2026-09-30,planned,0
+B03,FIT0415尺寸双轴云台+2xMG90S完整预装包,1,,https://www.dfrobot.com.cn/goods-1117.html,卖家必须装好并免用户裁剪舵盘,10元仅官方裸架价;整套预装未报价;3.3V PWM门限待确认,2026-09-30,planned,0
+B04,MG90S 同批备用舵机 / Waveshare参考SKU15024,0,USD,https://www.waveshare.com/mg90s-servo.htm,成品三芯线束,非必需备用件暂不购买;另加估算18元;B03已含工作所需两只舵机,2026-09-30,optional,0
+B05,封闭固定5V USB成品电源 / 3A+3A+1A / 精确SKU待报价,3,,https://www.dfrobot.com.cn/category-344.html,成品绝缘低压输出,60元为三只合计;三路正极不并联,2026-09-30,planned,0
+B06,Mini-B数据线+Type-C数据线+预压接舵机USB供电线,1,,,三根为1套;无需剪线焊线,确认数据功能和3A电源线能力,2026-09-30,planned,0
+B07,预装舵机电源分线模块与压接线束 / >=3A / 型号待锁定,1,,,端子和两路3PIN插座已安装,舵机门限不明时加入成品单向缓冲并重新报价,2026-09-30,planned,0
+B08,2.54mm杜邦线+400孔面包板+跳帽,1,,,成品,不让舵机负载电流经过面包板,2026-09-30,planned,0
+B09,USB电压电流表 / 5V >=3A / 型号待报价,1,,,成品,仅低压侧;分辨率不等于准确度,2026-09-30,planned,0
+B10,数字万用表含表笔电池 / 型号待报价,1,,,成品,仅低压电压/通断;电流档禁止并接电源,2026-09-30,planned,0
+B11,螺丝刀+M3螺母螺钉隔柱+绑带软垫标签,1,,,不需热熔铜螺母,按机械最终装配表,2026-09-30,planned,0
+B12,首套外壳托盘摄像头支架FDM打印,1,,,打印服务;材料待机械方案确认,先核对到货包络再打印;没有正式报价,2026-09-30,planned,0
+B13,运费与小件/代装/备用FFC预留,1,,,不适用,不是第二次整壳重打预算,2026-09-30,planned,0
+B14,Waveshare CH343 USB UART Board Type-A / 3.3V逻辑 / 全预焊版,1,,https://www.waveshare.com/product/ch343-usb-uart-board.htm,排针和跳帽已装;支持2.54mm杜邦线,C6独立更新与恢复工具;25元为预算非已核实国内报价;不接VCC给目标板供电,2026-09-30,planned,0

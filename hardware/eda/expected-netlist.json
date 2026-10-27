@@ -1,0 +1,128 @@
+{
+  "UART_F4_TX": [
+    {
+      "module": "U1",
+      "pin": "CN10-21",
+      "direction": "OUT"
+    },
+    {
+      "module": "U2",
+      "pin": "P1-15",
+      "direction": "IN"
+    }
+  ],
+  "UART_F4_RX": [
+    {
+      "module": "U1",
+      "pin": "CN10-33",
+      "direction": "IN"
+    },
+    {
+      "module": "U2",
+      "pin": "P1-13",
+      "direction": "OUT"
+    }
+  ],
+  "PAN_PWM": [
+    {
+      "module": "U1",
+      "pin": "CN10-13",
+      "direction": "OUT"
+    },
+    {
+      "module": "M1",
+      "pin": "SIGNAL",
+      "direction": "IN"
+    }
+  ],
+  "TILT_PWM": [
+    {
+      "module": "U1",
+      "pin": "CN10-15",
+      "direction": "OUT"
+    },
+    {
+      "module": "M2",
+      "pin": "SIGNAL",
+      "direction": "IN"
+    }
+  ],
+  "GND": [
+    {
+      "module": "U1",
+      "pin": "CN10-9",
+      "direction": "BI"
+    },
+    {
+      "module": "U2",
+      "pin": "P1-25",
+      "direction": "BI"
+    },
+    {
+      "module": "M1",
+      "pin": "GND",
+      "direction": "BI"
+    },
+    {
+      "module": "M2",
+      "pin": "GND",
+      "direction": "BI"
+    },
+    {
+      "module": "P1",
+      "pin": "GND",
+      "direction": "BI"
+    },
+    {
+      "module": "P2",
+      "pin": "GND",
+      "direction": "BI"
+    },
+    {
+      "module": "P3",
+      "pin": "MINUS",
+      "direction": "BI"
+    }
+  ],
+  "NUCLEO_5V": [
+    {
+      "module": "U1",
+      "pin": "USB_VBUS",
+      "direction": "IN"
+    },
+    {
+      "module": "P1",
+      "pin": "USB_5V",
+      "direction": "OUT"
+    }
+  ],
+  "P4_5V": [
+    {
+      "module": "U2",
+      "pin": "USB_VBUS",
+      "direction": "IN"
+    },
+    {
+      "module": "P2",
+      "pin": "USB_5V",
+      "direction": "OUT"
+    }
+  ],
+  "SERVO_5V": [
+    {
+      "module": "M1",
+      "pin": "VPLUS",
+      "direction": "IN"
+    },
+    {
+      "module": "M2",
+      "pin": "VPLUS",
+      "direction": "IN"
+    },
+    {
+      "module": "P3",
+      "pin": "PLUS",
+      "direction": "OUT"
+    }
+  ]
+}

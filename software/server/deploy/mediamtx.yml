@@ -1,0 +1,32 @@
+# 根据 MediaMTX v1.15.6 官方配置键编写；没有匿名读写用户。
+logLevel: warn
+authMethod: http
+authHTTPAddress: http://server:8080/internal/media-auth
+authHTTPExclude: []
+api: no
+metrics: no
+pprof: no
+playback: no
+rtsp: no
+rtmp: no
+hls: no
+srt: no
+webrtc: yes
+webrtcAddress: :8889
+webrtcEncryption: no
+webrtcAllowOrigins: []
+webrtcIPsFromInterfaces: no
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: :8189
+# 由 Compose 的 MTX_WEBRTCADDITIONALHOSTS 设置真实服务器公网 IP / DNS。
+webrtcAdditionalHosts: []
+# 基线直连 8189 UDP/TCP，不等于所有校园/蜂窝网络均可穿透。
+# 若实测网络阻断，需要自建或付费 TURN；禁止在代码库写入 TURN 凭据。
+webrtcICEServers2: []
+pathDefaults:
+  source: publisher
+  overridePublisher: no
+  maxReaders: 4
+  record: no
+paths:
+  inspection:

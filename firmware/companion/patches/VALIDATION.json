@@ -1,0 +1,12 @@
+{
+  "upstream_repository": "espressif/esp-idf",
+  "upstream_commit": "7101770dc6db2667b3c477cc31365dd1acd6db4e",
+  "patch_check": true,
+  "patch_apply_to_isolated_upstream_file": true,
+  "patched_bytes_match_normalized_original": true,
+  "original_sdk_modified_by_this_validation": false,
+  "full_idf_build_rerun": false,
+  "submodule_files_with_metadata_differences": 927,
+  "all_927_match_official_parent_pinned_sources": true,
+  "remaining_unknown_submodule_source_edits": 0
+}

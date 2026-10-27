@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#202921">
+  <meta name="description" content="巡点：用一台主动巡检终端，持续了解多个设备的状态。">
+  <title>巡点 · 主动观察工作台</title>
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主内容</a>
+  <section id="login-screen" class="login-screen" aria-labelledby="login-title">
+    <div class="login-story">
+      <a class="brand" href="/" aria-label="巡点首页"><span class="brand-mark">◉</span><span>巡点<span class="brand-en">FIELDNOTE</span></span></a>
+      <div class="story-copy"><span class="eyebrow">ACTIVE OBSERVATION / 01</span><h1>不在现场，<br>也知道发生了什么。</h1><p>在熟悉的位置观察，<br>把每一次变化，留下依据。</p></div>
+      <div class="orbit-art" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><span class="orbit-lens"><i></i></span><span class="orbit-point p-one">01</span><span class="orbit-point p-two">02</span><span class="orbit-point p-three">03</span></div>
+      <small>主动巡检终端 · 采购前软件工程版</small>
+    </div>
+    <div class="login-panel"><form id="login-form" class="login-card">
+      <span class="eyebrow">YOUR OBSERVATION DESK</span><h2 id="login-title">回到观察工作台</h2><p>使用部署时设置的访问口令登录。</p>
+      <label for="password">访问口令</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="256" autofocus>
+      <p id="login-error" class="form-error" role="alert"></p><button type="submit" class="button primary wide">进入工作台 <span aria-hidden="true">↗</span></button>
+      <p class="login-note">视频与设备状态只在登录后显示。<br>首次使用，请按照部署说明配置服务。</p>
+    </form></div>
+  </section>
+
+  <div id="workspace" class="workspace" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="巡点首页"><span class="brand-mark">◉</span><span>巡点<span class="brand-en">FIELDNOTE</span></span></a>
+      <div class="sidebar-label">观察工作台</div>
+      <nav aria-label="主导航">
+        <button class="nav-item active" data-view="overview" aria-current="page"><span aria-hidden="true">◫</span>现场概览</button>
+        <button class="nav-item" data-view="points"><span aria-hidden="true">⌖</span>观察点</button>
+        <button class="nav-item" data-view="events"><span aria-hidden="true">≋</span>变化记录</button>
+        <button class="nav-item" data-view="nearby"><span aria-hidden="true">ᛒ</span>近场连接</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="device-card"><span class="status-dot" id="sidebar-dot"></span><div><strong id="sidebar-device">等待设备</strong><small id="sidebar-status">尚未连接</small></div></div><button id="logout-button" class="text-button">退出工作台 <span aria-hidden="true">↗</span></button></div>
+    </aside>
+
+    <main id="main" class="main" tabindex="-1">
+      <header class="topbar"><div><span class="eyebrow">OBSERVATION / <span id="view-number">01</span></span><h1 id="view-title">现场概览<span class="title-dot">.</span></h1></div><div class="topbar-right"><span id="clock" class="clock"></span><span id="connection-chip" class="chip neutral">连接中</span><button id="mobile-logout" class="text-button mobile-logout" aria-label="退出工作台">退出</button></div></header>
+      <div id="connection-banner" class="notice" role="status" hidden></div>
+      <div id="simulator-banner" class="notice simulation" hidden><strong>开发模拟器</strong><span>当前状态与事件来自模拟数据，不代表实物运行；没有模拟视频。</span></div>
+
+      <section id="view-overview" class="view" aria-label="现场概览">
+        <div class="overview-grid">
+          <section class="video-panel" aria-labelledby="video-heading">
+            <div class="panel-title"><div><span class="tiny-label">现场画面</span><h2 id="video-heading">看见此刻</h2></div><span id="video-badge" class="chip neutral">未播放</span></div>
+            <div class="video-stage"><video id="live-video" autoplay playsinline muted aria-label="设备实时视频"></video><div id="video-empty" class="video-empty"><div class="viewfinder" aria-hidden="true"><i></i></div><h3>等待现场画面</h3><p id="video-message">设备连接并发布视频后，即可开始播放。</p><button id="video-start" class="button light" disabled>连接视频</button></div><div class="video-caption"><span id="active-point-label">尚未选择观察点</span><span id="video-resolution">LIVE VIEW</span></div></div>
+            <div class="video-toolbar"><p><span class="status-dot" id="video-dot"></span><span id="video-status">无视频连接</span></p><div><button id="video-stop" class="text-button" disabled>断开视频</button><button id="capture-button" class="text-button" data-device-command="capture">记录此刻 ↗</button></div></div>
+          </section>
+
+          <section class="control-panel panel" aria-labelledby="control-heading">
+            <div class="panel-title"><div><span class="tiny-label">观察方向</span><h2 id="control-heading">转向与巡检</h2></div><span id="mode-chip" class="chip neutral">未连接</span></div>
+            <div class="pose-readout"><div><small>水平</small><strong><span id="pan-display">—</span><em>°</em></strong></div><div><small>俯仰</small><strong><span id="tilt-display">—</span><em>°</em></strong></div></div><p class="caption">角度为指令值，设备未安装位置反馈传感器。</p>
+            <div class="direction-pad" role="group" aria-label="每次转动五度"><button data-nudge="up" aria-label="向上五度">↑</button><button data-nudge="left" aria-label="向左五度">←</button><button id="home-button" aria-label="回到中心位置">⌖</button><button data-nudge="right" aria-label="向右五度">→</button><button data-nudge="down" aria-label="向下五度">↓</button></div>
+            <form id="move-form" class="move-form"><label>水平角度<input id="pan-input" type="number" min="30" max="150" step="0.1" value="90" required></label><label>俯仰角度<input id="tilt-input" type="number" min="45" max="120" step="0.1" value="90" required></label><button class="button secondary" type="submit">转到这里</button></form>
+            <div class="mode-actions"><button class="button primary" id="patrol-button">开始巡检</button><button class="button secondary" id="pause-button">暂停</button></div>
+            <p id="command-status" class="command-feedback" role="status">控制指令将在设备在线时开放。</p>
+          </section>
+        </div>
+
+        <section class="observations-section" aria-labelledby="observations-heading"><div class="section-heading"><div><span class="eyebrow">POINTS OF INTEREST</span><h2 id="observations-heading">值得留意的地方</h2></div><button class="text-button" data-go-view="points">管理观察点 ↗</button></div><div id="observation-cards" class="observation-grid"></div></section>
+        <section class="recent-section" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">最近的变化</h2><button class="text-button" data-go-view="events">全部记录 ↗</button></div><div id="recent-events" class="event-list"></div></section>
+      </section>
+
+      <section id="view-points" class="view" aria-labelledby="points-heading" hidden><div class="page-intro"><div><h2 id="points-heading">让观察有明确的落点。</h2><p>第一版支持 3 个固定观察点。给每个位置命名，再框出需要识别的指示灯区域。</p></div><button id="add-point" class="button primary">＋ 新建观察点</button></div><div id="preset-list" class="preset-grid"></div><div class="method-note"><span>01 — 03</span><p>先在手动模式对准对象，再保存角度。识别范围限定为校准后的指示灯亮灭 / 颜色；结果不确定时会保留原始状态，等待复查。</p></div></section>
+
+      <section id="view-events" class="view" aria-labelledby="events-heading" hidden><div class="page-intro"><div><h2 id="events-heading">每次变化，都有来处。</h2><p>查看时间、观察点、识别结果与证据。没有证据的记录会明确标注。</p></div><button id="export-button" class="button secondary">导出实验记录 ↓</button></div><div class="filter-row"><label for="event-filter">筛选观察点</label><select id="event-filter"><option value="">全部观察点</option></select><button id="refresh-events" class="text-button">刷新</button><span id="event-count" class="caption"></span></div><div id="full-events" class="event-list large"></div><p class="caption export-note">导出当前已获取的最多 500 条记录；模拟数据将单独标记，不能用于实物实验结果。</p></section>
+
+      <section id="view-nearby" class="view" aria-labelledby="nearby-heading" hidden><div class="page-intro"><div><h2 id="nearby-heading">在设备身边，直接连接。</h2><p>通过蓝牙读取信息、近场控制或配置 Wi-Fi。异地视频仍通过互联网连接。</p></div><span id="ble-chip" class="chip neutral">未连接</span></div><div class="nearby-grid"><section class="panel ble-connect-panel"><span class="ble-symbol" aria-hidden="true">ᛒ</span><h3>连接附近的巡检终端</h3><p id="ble-support">正在检查浏览器蓝牙能力…</p><button id="ble-connect" class="button primary">选择蓝牙设备</button><button id="ble-disconnect" class="text-button" disabled>断开连接</button><dl id="ble-info" class="info-list"></dl><p id="ble-status" role="status" class="command-feedback">连接动作需要你亲自点击并选择设备。</p></section><section class="panel ble-settings"><h3>近场控制与配网</h3><p class="caption">先在设备上开启限时配对窗口，再输入设备提供的本次会话令牌。令牌仅保存在当前页面内存。</p><label for="ble-token">本次会话令牌</label><input id="ble-token" type="password" maxlength="128" autocomplete="off" spellcheck="false"><div class="ble-controls"><button id="ble-read" class="button secondary" disabled>读取设备信息</button><button id="ble-center" class="button secondary" disabled>转回中心</button><button id="ble-pause" class="button secondary" disabled>暂停巡检</button></div><form id="wifi-form"><h4>更新设备 Wi-Fi</h4><label for="wifi-ssid">Wi-Fi 名称</label><input id="wifi-ssid" maxlength="32" autocomplete="off" required><label for="wifi-password">Wi-Fi 密码</label><input id="wifi-password" type="password" maxlength="64" autocomplete="off"><p class="caption">仅发送到所选设备，不上传服务端。提交后清空输入；不会写入浏览器存储或日志。</p><button id="wifi-submit" class="button primary" disabled>发送网络配置</button></form></section></div><div class="notice"><strong>浏览器支持范围</strong><span>首批目标为 Android Chrome，以及具备蓝牙的 Windows Chrome / Edge。iPhone / iPad 的 Safari 不支持 Web Bluetooth，可使用 Wi-Fi 工作台；本页面不把浏览器能力检测视为实机验收。</span></div></section>
+      <footer class="footer"><span>巡点 · 主动观察工作台</span><span id="last-updated">尚未收到设备数据</span></footer>
+    </main>
+  </div>
+
+  <dialog id="preset-dialog" aria-labelledby="preset-dialog-title"><form id="preset-form"><div class="dialog-header"><div><span class="eyebrow">OBSERVATION POINT</span><h2 id="preset-dialog-title">新建观察点</h2></div><button type="button" id="close-preset" class="icon-button" aria-label="关闭">×</button></div><input id="preset-id" type="hidden"><label for="preset-name">观察点名称</label><input id="preset-name" maxlength="40" required placeholder="例如：桌面设备指示灯"><div class="two-fields"><label>水平角度<input id="preset-pan" type="number" min="30" max="150" step="0.1" required></label><label>俯仰角度<input id="preset-tilt" type="number" min="45" max="120" step="0.1" required></label></div><label for="preset-expected">预期状态</label><select id="preset-expected"><option value="on">亮起</option><option value="off">熄灭</option><option value="red">红色</option><option value="green">绿色</option><option value="blue">蓝色</option><option value="yellow">黄色</option></select><div class="roi-heading"><label>识别区域</label><button type="button" id="roi-reset" class="text-button">重置区域</button></div><div id="roi-stage" class="roi-stage"><video id="roi-video" autoplay playsinline muted></video><div id="roi-no-video">无实时预览，可填写下方区域比例。</div><div id="roi-overlay" aria-label="拖动绘制识别区域"><div id="roi-box"></div></div></div><p class="caption">在画面中拖出区域，或填写 0–1 的归一化坐标。先把云台对准该观察点再选框。</p><div class="roi-fields"><label>左侧 X<input id="roi-x" type="number" min="0" max="0.99" step="0.01" value="0.25" required></label><label>顶部 Y<input id="roi-y" type="number" min="0" max="0.99" step="0.01" value="0.25" required></label><label>宽度<input id="roi-w" type="number" min="0.01" max="1" step="0.01" value="0.5" required></label><label>高度<input id="roi-h" type="number" min="0.01" max="1" step="0.01" value="0.5" required></label></div><p id="preset-error" class="form-error" role="alert"></p><div class="dialog-footer"><button type="button" id="delete-preset" class="button danger" hidden>删除观察点</button><button type="submit" class="button primary">保存观察点</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript>工作台需要启用 JavaScript 才能登录、查看状态与视频。</noscript>
+</body>
+</html>

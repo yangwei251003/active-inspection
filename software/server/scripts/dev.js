@@ -1,0 +1,12 @@
+import { createApp } from '../src/app.js';
+import { connectSimulator } from '../src/simulator.js';
+import { hashPassword, token } from '../src/security.js';
+import { serverRoot } from '../src/config.js';
+import path from 'node:path';
+const password = token().slice(0, 18), deviceToken = token();
+const app = createApp({ source: 'simulator', deviceToken, passwordHash: hashPassword(password), dataDir: path.join(serverRoot, 'data'), port: Number(process.env.PORT ?? 8080) });
+const origin = await app.listen();
+const sim = connectSimulator({ url: origin.replace('http:', 'ws:') + '/ws/device', deviceToken });
+console.log(`\n模拟环境：${origin}\n本次启动登录口令：${password}\n仅本机监听；不保存口令；所有事件均为模拟数据；无真实视频。Ctrl+C 退出。\n`);
+let stopping = false;
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, async () => { if (stopping) return; stopping = true; sim.terminate(); await app.close(); process.exit(0); });

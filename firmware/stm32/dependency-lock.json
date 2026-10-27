@@ -1,0 +1,28 @@
+{
+  "format": 1,
+  "retrieved_at": "2026-09-30",
+  "baseline": {
+    "repository": "https://github.com/STMicroelectronics/STM32CubeF4",
+    "tag": "v1.28.3",
+    "commit": "94cae6e83f00e276a11957e7833c01ac3d0bd7af",
+    "path": "third_party/STM32CubeF4"
+  },
+  "hal": {
+    "repository": "https://github.com/STMicroelectronics/stm32f4xx-hal-driver",
+    "commit": "b6f0ed3829f3829eb358a2e7417d80bba1a42db7",
+    "path": "third_party/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver",
+    "license": "BSD-3-Clause"
+  },
+  "cmsis_device": {
+    "repository": "https://github.com/STMicroelectronics/cmsis_device_f4",
+    "commit": "3c77349ce04c8af401454cc51f85ea9a50e34fc1",
+    "path": "third_party/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx",
+    "license": "Apache-2.0"
+  },
+  "cmsis_core": {
+    "repository": "https://github.com/STMicroelectronics/STM32CubeF4",
+    "commit": "94cae6e83f00e276a11957e7833c01ac3d0bd7af",
+    "path": "third_party/STM32CubeF4/Drivers/CMSIS/Include",
+    "license": "Apache-2.0"
+  }
+}

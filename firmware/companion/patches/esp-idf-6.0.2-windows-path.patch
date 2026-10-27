@@ -1,0 +1,19 @@
+diff --git a/tools/cmake/build.cmake b/tools/cmake/build.cmake
+index 54d01ba4..3272f57d 100644
+--- a/tools/cmake/build.cmake
++++ b/tools/cmake/build.cmake
+@@ -698,6 +698,14 @@ macro(idf_build_process target)
+             endif()
+         endif()
+ 
++        # Active Inspection Windows path adapter: component-manager resolves SUBST
++        # aliases back to a Unicode path, which GNU assembler cannot create below.
++        # Restore the equivalent short alias; source content/lock stay unchanged.
++        if(DEFINED ENV{AI_CANONICAL_PROJECT_ROOT})
++            file(READ "${managed_components_list_file}" _ai_managed_text)
++            string(REPLACE "$ENV{AI_CANONICAL_PROJECT_ROOT}" "$ENV{AI_SHORT_PROJECT_ROOT}" _ai_managed_text "${_ai_managed_text}")
++            file(WRITE "${managed_components_list_file}" "${_ai_managed_text}")
++        endif()
+         include(${managed_components_list_file})
+ 
+         # Add managed components to list of all components

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "project_id": "active-inspection",
+  "updated_on": "2026-09-30",
+  "status": "pre_purchase_candidate",
+  "evidence_level": "V0_documentation",
+  "ready_for_user_wiring": false,
+  "hardware_verified": false,
+  "target": {
+    "stm32_board": "ST NUCLEO-F401RE",
+    "reference_board_family": "MB1136",
+    "mcu": "STM32F401RET6",
+    "package": "LQFP64",
+    "actual_board_revision": null,
+    "companion": "Waveshare ESP32-P4-NANO-KIT-A",
+    "companion_sku": "29027",
+    "radio": "ESP32-C6-MINI-1",
+    "actual_companion_revision": null,
+    "camera": "RPi Camera (B) / OV5647",
+    "actual_camera_revision": null
+  },
+  "sources": {
+    "nucleo": {
+      "url": "https://www.st.com/resource/en/user_manual/dm00105823.pdf",
+      "local": "docs/sources/UM1724.pdf",
+      "revision": "17",
+      "published": "2025-09",
+      "pin_table": "29",
+      "page": 59,
+      "sha256": "576d9bee3bc32c8ee70bf0d77cf9494cec06ea7c1d9ff98eebf2738cb9314a14"
+    },
+    "p4": {
+      "url": "https://files.waveshare.com/wiki/ESP32-P4-NANO/ESP32-P4-NANO-schematic.pdf",
+      "local": "docs/sources/ESP32-P4-NANO-schematic.pdf",
+      "section": "Interface",
+      "page": 1,
+      "sha256": "1e57b31f9ecc98be77c6cfba7ff1720e0f764d36208cbe18dff7f1fbea310de1"
+    }
+  },
+  "uart": {
+    "baud": 115200,
+    "bits": 8,
+    "parity": "none",
+    "stop_bits": 1,
+    "logic_voltage_v": 3.3
+  },
+  "signals": [
+    {
+      "net": "UART_F4_TX",
+      "from": {
+        "board": "NUCLEO-F401RE",
+        "connector": "CN10",
+        "physical_pin": 21,
+        "mcu_pin": "PA9",
+        "function": "USART1_TX AF7"
+      },
+      "to": {
+        "board": "ESP32-P4-NANO",
+        "connector": "P1",
+        "physical_pin": 15,
+        "mcu_pin": "GPIO21",
+        "function": "UART_RX"
+      },
+      "voltage_v": 3.3,
+      "document_mapping_verified": true
+    },
+    {
+      "net": "UART_F4_RX",
+      "from": {
+        "board": "ESP32-P4-NANO",
+        "connector": "P1",
+        "physical_pin": 13,
+        "mcu_pin": "GPIO20",
+        "function": "UART_TX"
+      },
+      "to": {
+        "board": "NUCLEO-F401RE",
+        "connector": "CN10",
+        "physical_pin": 33,
+        "mcu_pin": "PA10",
+        "function": "USART1_RX AF7"
+      },
+      "voltage_v": 3.3,
+      "document_mapping_verified": true
+    },
+    {
+      "net": "GND_SIGNAL",
+      "from": {
+        "board": "NUCLEO-F401RE",
+        "connector": "CN10",
+        "physical_pin": 9,
+        "mcu_pin": null,
+        "function": "GND"
+      },
+      "to": {
+        "board": "ESP32-P4-NANO",
+        "connector": "P1",
+        "physical_pin": 25,
+        "mcu_pin": null,
+        "function": "GND"
+      },
+      "document_mapping_verified": true
+    },
+    {
+      "net": "PAN_PWM",
+      "from": {
+        "board": "NUCLEO-F401RE",
+        "connector": "CN10",
+        "physical_pin": 13,
+        "mcu_pin": "PA6",
+        "function": "TIM3_CH1 AF2"
+      },
+      "to": {
+        "board": "assembled_servo_distribution",
+        "connector": "S1",
+        "physical_pin": null,
+        "mcu_pin": null,
+        "function": "pan_servo_signal"
+      },
+      "voltage_v": 3.3,
+      "requires_servo_logic_compatibility_verification": true
+    },
+    {
+      "net": "TILT_PWM",
+      "from": {
+        "board": "NUCLEO-F401RE",
+        "connector": "CN10",
+        "physical_pin": 15,
+        "mcu_pin": "PA7",
+        "function": "TIM3_CH2 AF2"
+      },
+      "to": {
+        "board": "assembled_servo_distribution",
+        "connector": "S2",
+        "physical_pin": null,
+        "mcu_pin": null,
+        "function": "tilt_servo_signal"
+      },
+      "voltage_v": 3.3,
+      "requires_servo_logic_compatibility_verification": true
+    }
+  ],
+  "power": {
+    "topology": "three_separate_finished_fixed_5V_USB_supplies_common_low_voltage_ground",
+    "positive_rails_may_be_paralleled": false,
+    "servo_load_current_via_mcu_or_breadboard": false,
+    "nucleo_standalone_usb": {
+      "connector": "CN1 Mini-B",
+      "jp5": "pins 1-2 U5V",
+      "jp1": "ON after actual board verification",
+      "max_total_board_and_extension_current_ma": 100,
+      "actual_current_ma": null,
+      "source": "UM1724 Rev17 section7.5.1 p21"
+    },
+    "nucleo_pc_usb": {
+      "jp5": "pins 1-2 U5V",
+      "jp1": "OFF default",
+      "usb_enumeration_required": true
+    },
+    "e5v_alternative_not_current_wiring": {
+      "positive": "CN7-6",
+      "ground": "CN7-8",
+      "jp5": "pins 2-3",
+      "jp1": "OFF",
+      "voltage_range_v": [
+        4.75,
+        5.25
+      ],
+      "reference_max_input_ma": 500,
+      "requires_revised_verified_wiring": true
+    }
+  },
+  "motion": {
+    "pan_deg": [
+      30,
+      150
+    ],
+    "tilt_deg": [
+      45,
+      120
+    ],
+    "neutral_deg": [
+      90,
+      90
+    ],
+    "range_status": "software_initial_limits_not_mechanical_verification",
+    "feedback": "commanded_only_no_encoder",
+    "servo_output_default": "disabled"
+  },
+  "unverified": [
+    "actual board and chip revisions",
+    "physical pin1 orientation and delivered header soldering",
+    "servo 3.3V input threshold",
+    "servo power harness exact model and ratings",
+    "actual current and voltage drop",
+    "FFC travel clearance and bend specification",
+    "seller assembled horn no user trimming",
+    "full domestic quote including delivery and printing"
+  ]
+}

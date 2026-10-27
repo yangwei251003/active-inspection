@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {createApp} from '../../server/src/app.js';
+import {connectSimulator} from '../../server/src/simulator.js';
+import {token,hashPassword} from '../../server/src/security.js';
+const require=createRequire(import.meta.url);
+const {chromium}=require(process.env.PLAYWRIGHT_PACKAGE || 'playwright');
+const output=path.join(path.dirname(fileURLToPath(import.meta.url)),'artifacts');
+const dataDir=await fs.mkdtemp(path.join(os.tmpdir(),'inspection-provenance-'));
+const password=token(),deviceToken=token(),app=createApp({port:0,source:'simulator',dataDir,deviceToken,passwordHash:hashPassword(password)});
+let browser,sim;
+const report={started_at:new Date().toISOString(),source:'simulator',hardware_verified:false,checks:[],browser_errors:[]};
+try {
+  const origin=await app.listen();sim=connectSimulator({url:origin.replace('http:','ws:')+'/ws/device',deviceToken});
+  browser=await chromium.launch({headless:true,channel:process.env.WEB_TEST_CHANNEL||'chrome'});
+  const page=await browser.newPage({viewport:{width:1365,height:900},locale:'zh-CN'});page.setDefaultTimeout(10_000);
+  page.on('pageerror',error=>report.browser_errors.push(error.message));
+  await page.goto(origin,{waitUntil:'networkidle'});await page.locator('#password').fill(password);await page.locator('#login-form button').click();
+  await page.locator('#workspace').waitFor({state:'visible'});await page.waitForFunction(()=>document.querySelector('#connection-chip').textContent==='模拟器在线');
+  await page.locator('[data-view="points"]').click();await page.locator('.preset-card').first().getByRole('button',{name:'编辑',exact:true}).click();await page.locator('#preset-name').fill('当前新位置');await page.locator('#preset-form button[type="submit"]').click();await page.locator('#preset-dialog').waitFor({state:'hidden'});
+  assert.equal(app.snapshot().presets_revision,2);
+  const event=(id,revision,state)=>({event_id:id,kind:'observation',preset_id:'p1',state,confidence:.9,at:new Date().toISOString(),evidence_url:null,...(revision===undefined?{}:{preset_revision:revision})});
+  sim.send({type:'event',event:event('current-config-test',2,'green')});
+  sim.send({type:'event',event:event('historical-config-test',1,'red')});
+  sim.send({type:'event',event:event('unresolved-config-test',undefined,'unknown')});
+  await page.locator('[data-view="events"]').click();
+  await page.waitForFunction(()=>{const text=document.querySelector('#full-events').textContent;return text.includes('当前配置 · r2')&&text.includes('历史配置 · r1')&&text.includes('配置未核实');});
+  const rows=page.locator('#full-events .event-row');
+  const historical=rows.filter({hasText:'历史配置 · r1'}),unresolved=rows.filter({hasText:'配置未核实'}),current=rows.filter({hasText:'当前配置 · r2'});
+  assert.match(await current.locator('h3').textContent(),/当前新位置/);
+  assert.doesNotMatch(await historical.locator('h3').textContent(),/当前新位置/);
+  assert.doesNotMatch(await unresolved.locator('h3').textContent(),/当前新位置/);
+  assert.match(await unresolved.textContent(),/不作为当前观察结论/);
+  const state=await page.evaluate(async()=>(await fetch('/api/state')).json());assert.deepEqual(state.observations,[]);
+  report.checks.push('真实服务归档current/historical/unresolved三种事件，旧配置与未核实事件不借用当前名称或更新实时观察');
+  const pending=page.waitForEvent('download');await page.locator('#export-button').click();const download=await pending;const csv=await fs.readFile(await download.path(),'utf8');
+  for(const field of ['preset_revision','configuration_status_at_ingest','configuration_reason','configuration_label_at_export','current_revision_at_export'])assert.ok(csv.includes(field));
+  for(const label of ['historical','unresolved','历史配置 · r1','配置未核实'])assert.ok(csv.includes(label));
+  assert.match(download.suggestedFilename(),/SIMULATOR/);report.checks.push('CSV保留采集修订、归档判定、导出时当前修订、历史/未核实标签和模拟来源');
+  await page.screenshot({path:path.join(output,'desktop-event-provenance.png'),fullPage:true});await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:path.join(output,'mobile-event-provenance.png'),fullPage:true});
+  assert.deepEqual(report.browser_errors,[]);report.status='PASS';
+} catch(error){report.status='FAIL';report.error=error.message;throw error;}
+finally{report.finished_at=new Date().toISOString();await fs.writeFile(path.join(output,'browser-provenance.json'),JSON.stringify(report,null,2)+'\n');await browser?.close();sim?.terminate();await app.close();await fs.rm(dataDir,{recursive:true,force:true});}

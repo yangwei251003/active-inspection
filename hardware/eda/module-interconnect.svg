@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1220" viewBox="0 0 1440 1220">
+<rect width="1440" height="1220" fill="#f8fafc"/>
+<style>text{font-family:Microsoft YaHei,Arial,sans-serif;fill:#172b36} .small{font-size:15px} .pin{font-size:14px}</style>
+<text x="48" y="53" font-size="30" font-weight="700">巡点 · 模块接口连接图</text>
+<text x="48" y="85" font-size="17">采购前参考图 | 电源/针号依据官方资料 | 尚未到货验证</text>
+<text x="48" y="115" font-size="17">相同网络名称表示电气相连；彩色线为信号或电源接口，USB 电源使用完整成品线。</text>
+<rect x="65" y="160" width="620" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="85" y="190" font-size="17" font-weight="700">U1  NUCLEO-F401RE / reference only</text>
+<text x="85" y="224" font-size="14">CN10-21</text>
+<text x="190" y="224" font-size="13">PA9 / TX USART1</text>
+<line x1="497" y1="219" x2="522" y2="219" stroke="#0369a1" stroke-width="2"/>
+<circle cx="497" cy="219" r="3" fill="white" stroke="#0369a1"/>
+<text x="528" y="224" font-size="14" fill="#0369a1">UART_F4_TX</text>
+<text x="85" y="255" font-size="14">CN10-33</text>
+<text x="190" y="255" font-size="13">PA10 / RX USART1</text>
+<line x1="497" y1="250" x2="522" y2="250" stroke="#0369a1" stroke-width="2"/>
+<circle cx="497" cy="250" r="3" fill="white" stroke="#0369a1"/>
+<text x="528" y="255" font-size="14" fill="#0369a1">UART_F4_RX</text>
+<text x="85" y="286" font-size="14">CN10-13</text>
+<text x="190" y="286" font-size="13">PA6 / PAN TIM3 CH1</text>
+<line x1="497" y1="281" x2="522" y2="281" stroke="#047857" stroke-width="2"/>
+<circle cx="497" cy="281" r="3" fill="white" stroke="#047857"/>
+<text x="528" y="286" font-size="14" fill="#047857">PAN_PWM</text>
+<text x="85" y="317" font-size="14">CN10-15</text>
+<text x="190" y="317" font-size="13">PA7 / TILT TIM3 CH2</text>
+<line x1="497" y1="312" x2="522" y2="312" stroke="#047857" stroke-width="2"/>
+<circle cx="497" cy="312" r="3" fill="white" stroke="#047857"/>
+<text x="528" y="317" font-size="14" fill="#047857">TILT_PWM</text>
+<text x="85" y="348" font-size="14">CN10-9</text>
+<text x="190" y="348" font-size="13">GND / Signal ground</text>
+<line x1="497" y1="343" x2="522" y2="343" stroke="#475569" stroke-width="2"/>
+<circle cx="497" cy="343" r="3" fill="white" stroke="#475569"/>
+<text x="528" y="348" font-size="14" fill="#475569">GND</text>
+<text x="85" y="379" font-size="14">USB_VBUS</text>
+<text x="190" y="379" font-size="13">USB connector +5V / see JP1 note</text>
+<line x1="497" y1="374" x2="522" y2="374" stroke="#b45309" stroke-width="2"/>
+<circle cx="497" cy="374" r="3" fill="white" stroke="#b45309"/>
+<text x="528" y="379" font-size="14" fill="#b45309">NUCLEO_5V</text>
+<rect x="765" y="160" width="620" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="785" y="190" font-size="17" font-weight="700">U2  ESP32-P4-NANO / C6 + OV5647</text>
+<text x="785" y="224" font-size="14">P1-15</text>
+<text x="890" y="224" font-size="13">GPIO21 / UART RX</text>
+<line x1="1197" y1="219" x2="1222" y2="219" stroke="#0369a1" stroke-width="2"/>
+<circle cx="1197" cy="219" r="3" fill="white" stroke="#0369a1"/>
+<text x="1228" y="224" font-size="14" fill="#0369a1">UART_F4_TX</text>
+<text x="785" y="255" font-size="14">P1-13</text>
+<text x="890" y="255" font-size="13">GPIO20 / UART TX</text>
+<line x1="1197" y1="250" x2="1222" y2="250" stroke="#0369a1" stroke-width="2"/>
+<circle cx="1197" cy="250" r="3" fill="white" stroke="#0369a1"/>
+<text x="1228" y="255" font-size="14" fill="#0369a1">UART_F4_RX</text>
+<text x="785" y="286" font-size="14">P1-25</text>
+<text x="890" y="286" font-size="13">GND / Signal ground</text>
+<line x1="1197" y1="281" x2="1222" y2="281" stroke="#475569" stroke-width="2"/>
+<circle cx="1197" cy="281" r="3" fill="white" stroke="#475569"/>
+<text x="1228" y="286" font-size="14" fill="#475569">GND</text>
+<text x="785" y="317" font-size="14">USB_VBUS</text>
+<text x="890" y="317" font-size="13">Type-C connector +5V</text>
+<line x1="1197" y1="312" x2="1222" y2="312" stroke="#b45309" stroke-width="2"/>
+<circle cx="1197" cy="312" r="3" fill="white" stroke="#b45309"/>
+<text x="1228" y="317" font-size="14" fill="#b45309">P4_5V</text>
+<rect x="65" y="445" width="620" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="85" y="475" font-size="17" font-weight="700">M1  Pan servo / prewired plug</text>
+<text x="85" y="509" font-size="14">SIGNAL</text>
+<text x="190" y="509" font-size="13">Control input</text>
+<line x1="497" y1="504" x2="522" y2="504" stroke="#047857" stroke-width="2"/>
+<circle cx="497" cy="504" r="3" fill="white" stroke="#047857"/>
+<text x="528" y="509" font-size="14" fill="#047857">PAN_PWM</text>
+<text x="85" y="540" font-size="14">VPLUS</text>
+<text x="190" y="540" font-size="13">Separate 5V supply</text>
+<line x1="497" y1="535" x2="522" y2="535" stroke="#be123c" stroke-width="2"/>
+<circle cx="497" cy="535" r="3" fill="white" stroke="#be123c"/>
+<text x="528" y="540" font-size="14" fill="#be123c">SERVO_5V</text>
+<text x="85" y="571" font-size="14">GND</text>
+<text x="190" y="571" font-size="13">Return / signal ground</text>
+<line x1="497" y1="566" x2="522" y2="566" stroke="#475569" stroke-width="2"/>
+<circle cx="497" cy="566" r="3" fill="white" stroke="#475569"/>
+<text x="528" y="571" font-size="14" fill="#475569">GND</text>
+<rect x="765" y="445" width="620" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="785" y="475" font-size="17" font-weight="700">M2  Tilt servo / prewired plug</text>
+<text x="785" y="509" font-size="14">SIGNAL</text>
+<text x="890" y="509" font-size="13">Control input</text>
+<line x1="1197" y1="504" x2="1222" y2="504" stroke="#047857" stroke-width="2"/>
+<circle cx="1197" cy="504" r="3" fill="white" stroke="#047857"/>
+<text x="1228" y="509" font-size="14" fill="#047857">TILT_PWM</text>
+<text x="785" y="540" font-size="14">VPLUS</text>
+<text x="890" y="540" font-size="13">Separate 5V supply</text>
+<line x1="1197" y1="535" x2="1222" y2="535" stroke="#be123c" stroke-width="2"/>
+<circle cx="1197" cy="535" r="3" fill="white" stroke="#be123c"/>
+<text x="1228" y="540" font-size="14" fill="#be123c">SERVO_5V</text>
+<text x="785" y="571" font-size="14">GND</text>
+<text x="890" y="571" font-size="13">Return / signal ground</text>
+<line x1="1197" y1="566" x2="1222" y2="566" stroke="#475569" stroke-width="2"/>
+<circle cx="1197" cy="566" r="3" fill="white" stroke="#475569"/>
+<text x="1228" y="571" font-size="14" fill="#475569">GND</text>
+<rect x="65" y="730" width="430" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="85" y="760" font-size="17" font-weight="700">P1  NUCLEO USB supply / finished</text>
+<text x="85" y="794" font-size="14">USB_5V</text>
+<text x="190" y="794" font-size="13">Fixed 5V &gt;=1A</text>
+<line x1="350" y1="789" x2="375" y2="789" stroke="#b45309" stroke-width="2"/>
+<circle cx="350" cy="789" r="3" fill="white" stroke="#b45309"/>
+<text x="381" y="794" font-size="14" fill="#b45309">NUCLEO_5V</text>
+<text x="85" y="825" font-size="14">GND</text>
+<text x="190" y="825" font-size="13">USB return</text>
+<line x1="350" y1="820" x2="375" y2="820" stroke="#475569" stroke-width="2"/>
+<circle cx="350" cy="820" r="3" fill="white" stroke="#475569"/>
+<text x="381" y="825" font-size="14" fill="#475569">GND</text>
+<rect x="525" y="730" width="430" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="545" y="760" font-size="17" font-weight="700">P2  P4 USB supply / finished</text>
+<text x="545" y="794" font-size="14">USB_5V</text>
+<text x="650" y="794" font-size="13">Fixed 5V &gt;=3A</text>
+<line x1="810" y1="789" x2="835" y2="789" stroke="#b45309" stroke-width="2"/>
+<circle cx="810" cy="789" r="3" fill="white" stroke="#b45309"/>
+<text x="841" y="794" font-size="14" fill="#b45309">P4_5V</text>
+<text x="545" y="825" font-size="14">GND</text>
+<text x="650" y="825" font-size="13">USB return</text>
+<line x1="810" y1="820" x2="835" y2="820" stroke="#475569" stroke-width="2"/>
+<circle cx="810" cy="820" r="3" fill="white" stroke="#475569"/>
+<text x="841" y="825" font-size="14" fill="#475569">GND</text>
+<rect x="985" y="730" width="430" height="260" rx="10" fill="white" stroke="#cbd5e1"/>
+<text x="1005" y="760" font-size="17" font-weight="700">P3  Servo supply / finished</text>
+<text x="1005" y="794" font-size="14">PLUS</text>
+<text x="1110" y="794" font-size="13">Fixed 5V &gt;=3A</text>
+<line x1="1270" y1="789" x2="1295" y2="789" stroke="#be123c" stroke-width="2"/>
+<circle cx="1270" cy="789" r="3" fill="white" stroke="#be123c"/>
+<text x="1301" y="794" font-size="14" fill="#be123c">SERVO_5V</text>
+<text x="1005" y="825" font-size="14">MINUS</text>
+<text x="1110" y="825" font-size="13">Cable return</text>
+<line x1="1270" y1="820" x2="1295" y2="820" stroke="#475569" stroke-width="2"/>
+<circle cx="1270" cy="820" r="3" fill="white" stroke="#475569"/>
+<text x="1301" y="825" font-size="14" fill="#475569">GND</text>
+<text x="48" y="1048" font-size="22" font-weight="700">装配约束</text>
+<text x="48" y="1080" font-size="16">1. 舵机正极只接 SERVO_5V，不能接 NUCLEO/P4 的 3.3V 或 5V 引脚；大电流不经过面包板。</text>
+<text x="48" y="1107" font-size="16">2. 三路成品电源正极各自独立，严禁并联；GND 共地。断电接线，额定值与实际电流仍需验证。</text>
+<text x="48" y="1134" font-size="16">3. NUCLEO 充电器供电：JP1 ON、JP5 U5V；该路径整板不超过 100mA，详见供电文档。</text>
+<text x="48" y="1161" font-size="16">4. OV5647 用原厂 CSI 排线接 P4；排针方向、FFC 接触面和运动余量在到货后核对。</text>
+<text x="48" y="1188" font-size="16">5. 本图由接口清单生成；嘉立创原生工程导入、ERC 和实物连线验收仍分别记录。</text>
+</svg>
